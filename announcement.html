@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcement</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .slider {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+            transition: opacity 0.5s;
+        }
+        .navigation {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .nav-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <div class="slides">
+            <img src="community.jpg" alt="Image 1" class="slide">
+            <img src="Screenshot_23-4-2025_22186_www.instagram.com.jpeg" alt="Image 2" class="slide">
+            <img src="panel.jpg" alt="Image 3" class="slide">
+        </div>
+        <div class="navigation">
+            <button class="nav-btn" id="prev">❮</button>
+            <button class="nav-btn" id="next">❯</button>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelector('.slides');
+        const images = document.querySelectorAll('.slide');
+        const totalSlides = images.length;
+        let currentIndex = 0;
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+        });
+    </script>
+</body>
+</html>
